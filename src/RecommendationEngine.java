@@ -31,12 +31,6 @@ public class RecommendationEngine {
         if (n > 10) {
             n = 10;
         }
-        String chosenGenre;
-        if (genreFilter == null) {
-            chosenGenre = "ALL";
-        } else {
-            chosenGenre = genreFilter;
-        }
         String mode;
         if (sortMode == null) {
             mode = MODE_RATING_DESC;
@@ -44,11 +38,12 @@ public class RecommendationEngine {
             mode = sortMode;
         }
 
+        boolean allGenres = genreFilter == null || genreFilter.length() == 0;
         ArrayList<Movie> candidates = new ArrayList<Movie>();
         ArrayList<Movie> all = library.getAllMovies();
         for (int i = 0; i < all.size(); i++) {
             Movie movie = all.get(i);
-            if (!chosenGenre.equalsIgnoreCase("ALL") && !movie.getGenre().equalsIgnoreCase(chosenGenre)) {
+            if (!allGenres && !movie.getGenre().equalsIgnoreCase(genreFilter)) {
                 continue;
             }
             if (!isExcluded(user, movie.getId())) {

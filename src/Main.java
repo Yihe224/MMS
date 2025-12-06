@@ -249,37 +249,27 @@ public class Main {
         }
         System.out.println((genres.size() + 1) + ". All");
 
-//        System.out.print("Enter choice (default: All): ");
-//        String genreChoiceText = scanner.nextLine().trim();
-//        int genreChoice = parseNumber(genreChoiceText);
-//        String chosenGenre = "ALL";
-//        if (genreChoice >= 1 && genreChoice <= genres.size()) {
-//            chosenGenre = genres.get(genreChoice - 1);
-//        }
-        String chosenGenre = "ALL";
-        int genreChoice = 0;
+        String genreFilter = null; // null means "All genres"
         while (true) {
             System.out.print("Enter choice: ");
             String genreChoiceText = scanner.nextLine().trim();
-
             try {
-                genreChoice = Integer.parseInt(genreChoiceText);
+                int genreChoice = Integer.parseInt(genreChoiceText);
                 if (genreChoice >= 1 && genreChoice <= genres.size()) {
-                    chosenGenre = genres.get(genreChoice - 1);
-                    break;
-                } else if (genreChoice > genres.size() + 1 || genreChoice < 0) {
-                    System.out.println("Please enter a number between 1 and " + (genres.size() + 1) + ".");
-                } else {  //All
+                    genreFilter = genres.get(genreChoice - 1);
                     break;
                 }
-            } catch (NumberFormatException e) {
+                if (genreChoice == genres.size() + 1) {
+                    genreFilter = null; // All
+                    break;
+                }
+                System.out.println("Please enter a number between 1 and " + (genres.size() + 1) + ".");
+            }
+            catch (NumberFormatException e) {
                 System.out.println("Please enter a valid number.");
             }
 
         }
-//        if (genreChoice >= 1 && genreChoice <= genres.size()) {
-//            chosenGenre = genres.get(genreChoice - 1);
-//        }
 
         System.out.println("\n--- Sort Options ---");
         System.out.println("1. Rating high to low");
@@ -326,7 +316,7 @@ public class Main {
 
             try {
                 number = Integer.parseInt(text);
-                if (number >= 1) {
+                if (number >= 1 && number <= 10) {
                     break;
                 } else {
                     System.out.println("Please enter a number between 1 and 10.");
@@ -342,12 +332,13 @@ public class Main {
 //            number = 10;
 //        }
 
-        ArrayList<Movie> recs = engine.recommend(user, library, chosenGenre, sortMode, number);
+        ArrayList<Movie> recs = engine.recommend(user, library, genreFilter, sortMode, number);
         if (recs.isEmpty()) {
             System.out.println("No recommendations available.");
             return;
         }
         System.out.println("\n--- Recommendations ---");
+        
         for (int i = 0; i < recs.size(); i++) {
             Movie movie = recs.get(i);
             System.out.println((i + 1) + ". " + movie.shortDescription());
