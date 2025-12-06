@@ -25,19 +25,7 @@ public class RecommendationEngine {
 
     // Main entry: filter by genre (or ALL), exclude watched/watchlist, then sort.
     public ArrayList<Movie> recommend(User user, MovieLibrary library, String genreFilter, String sortMode, int n) {
-        if (n <= 0) {
-            n = 5;
-        }
-        if (n > 10) {
-            n = 10;
-        }
-        String mode;
-        if (sortMode == null) {
-            mode = MODE_RATING_DESC;
-        } else {
-            mode = sortMode;
-        }
-
+        String mode = sortMode;
         boolean allGenres = genreFilter == null || genreFilter.length() == 0;
         ArrayList<Movie> candidates = new ArrayList<Movie>();
         ArrayList<Movie> all = library.getAllMovies();
