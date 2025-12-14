@@ -13,10 +13,10 @@ public class HistoryLog {
     }
 
     public void addEntry(String movieId, String date) {
-        String id = movieId.toUpperCase();// Update existing entry if movie was already watched
+        String id = movieId.toUpperCase();
         for (int i = 0; i < entries.size(); i++) {
             if (entries.get(i).getMovieId().equalsIgnoreCase(id)) {
-                entries.set(i, new History(id, date));
+                entries.set(i, new History(id, date));// Update existing entry if movie was already watched
                 return;
             }
         }
