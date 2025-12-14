@@ -359,7 +359,7 @@ public class Main {
             System.out.println("Current password incorrect.");
             return;
         }
-        System.out.print("Enter new password: ");
+        System.out.print("Enter new password (5-14 characters): ");
         String newPass = scanner.nextLine().trim();
         if (newPass.length() < 5 || newPass.length() > 14) {
             System.out.println("Password length must be between 5 and 14 characters.");
