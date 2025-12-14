@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 // CLI entry point for the movie tracker.
 public class Main {
-    private static final String MOVIE_FILE = "data/movies.csv";
-    private static final String USER_FILE = "data/users.csv";
+    private static final String MOVIE_FILE = "data/movies.csv";// File path for movie data storage (CSV format)
+    private static final String USER_FILE = "data/users.csv";// File path for user account data storage (CSV format)
 
     public static void main(String[] args) {
         MovieLibrary movieLibrary = new MovieLibrary();
