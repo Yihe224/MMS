@@ -38,7 +38,7 @@ public class Main {
                 String choice = scanner.nextLine().trim();   //trim avoid space
                 switch (choice) {
                     case "1" -> browseMovies(movieLibrary, currentUser);// Display all movies
-                    case "2" -> { 
+                    case "2" -> {
                         addMovieToWatchlist(scanner, currentUser, movieLibrary);// Add movie to watchlist
                         userStorage.saveUsers(users, USER_FILE);// Persist updated user data
                     }
