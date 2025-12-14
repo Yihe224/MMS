@@ -28,7 +28,7 @@ public class Main {
                 String choice = scanner.nextLine().trim();
                 switch (choice) {
                     case "1" -> currentUser = handleLogin(scanner, users);
-                    case "2" -> createAccount(scanner, users, userStorage);// Create new account
+                    case "2" -> createAccount(scanner, users, userStorage);
                     case "3" -> running = false;// Exit application
                     default -> System.out.println("Invalid option. Please try again.");
                 }
@@ -37,25 +37,25 @@ public class Main {
                 showUserMenu(currentUser);
                 String choice = scanner.nextLine().trim();   //trim avoid space
                 switch (choice) {
-                    case "1" -> browseMovies(movieLibrary, currentUser);// Display all movies
+                    case "1" -> browseMovies(movieLibrary, currentUser);
                     case "2" -> {
-                        addMovieToWatchlist(scanner, currentUser, movieLibrary);// Add movie to watchlist
+                        addMovieToWatchlist(scanner, currentUser, movieLibrary);
                         userStorage.saveUsers(users, USER_FILE);// Persist updated user data
                     }
                     case "3" -> {
-                        removeMovieFromWatchlist(scanner, currentUser, movieLibrary);// Remove from watchlist
+                        removeMovieFromWatchlist(scanner, currentUser, movieLibrary);
                         userStorage.saveUsers(users, USER_FILE);
                     }
-                    case "4" -> viewWatchlist(currentUser, movieLibrary);// Show user's watchlist
+                    case "4" -> viewWatchlist(currentUser, movieLibrary);
 
                     case "5" -> {
-                        markMovieAsWatched(scanner, currentUser, movieLibrary);// Mark movie as watched
+                        markMovieAsWatched(scanner, currentUser, movieLibrary);
                         userStorage.saveUsers(users, USER_FILE);
                     }
-                    case "6" -> viewHistory(currentUser, movieLibrary);// Show watch history
-                    case "7" -> getRecommendations(scanner, currentUser, movieLibrary, recommendationEngine); // Get suggestions
+                    case "6" -> viewHistory(currentUser, movieLibrary);
+                    case "7" -> getRecommendations(scanner, currentUser, movieLibrary, recommendationEngine);
                     case "8" -> {
-                        changePassword(scanner, currentUser);// Update user password
+                        changePassword(scanner, currentUser);
                         userStorage.saveUsers(users, USER_FILE);
                     }
                     case "9" -> {
