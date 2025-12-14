@@ -7,7 +7,7 @@ public class History {
         this.movieId = movieId;
         this.watchedDate = watchedDate;
     }
-
+// get id, watched date
     public String getMovieId() {
         return movieId;
     }
